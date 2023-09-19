@@ -5,7 +5,7 @@ import Home from '../Pages/Home';
 import Signin from '../Pages/Signin';
 import Signup from '../Pages/Signup';
 import ThankYou from "../Pages/ThankYou";
-import StripeContainer from "../components/Payment/StripeContainer";
+import StockVoting from "../Pages/StockVoting";
 const Routers =()=>{
     return (
         <Routes>
@@ -13,8 +13,8 @@ const Routers =()=>{
             <Route path='/home' element={<Home/>} />
             <Route path='/signin' element={<Signin/>} />
             <Route path='/signup' element={<Signup/>} />
+            <Route path='/stocks' element={<StockVoting/>} />
             <Route path='/thank-you' element={<ThankYou/>} />
-            <Route path='/payment' element={<StripeContainer/>} />
             </Routes>
 
     )
