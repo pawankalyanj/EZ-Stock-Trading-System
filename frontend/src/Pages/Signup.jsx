@@ -77,7 +77,7 @@ const Signup =()=>{
                                 </FormGroup>
                                 <Button className="btn secondary__btn auth__btn" type="submit">Create Account</Button>
                             </Form>
-                            <p> Already have an account?<Link to='/login'>Login</Link></p>
+                            <p> Already have an account?<Link to='/signin'>Login</Link></p>
 
                         </div>
                         
