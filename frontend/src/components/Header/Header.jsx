@@ -69,7 +69,7 @@ const Header =()=>{
                             </ul>
                             {/* ==menu end== */ }
                         </div>
-                        <div className="nav_right d-flex align-items-center gap-4">
+                        <div className="nav_right d-flex align-items-center gap-4 loginButtons">
                                 <div className="nav_btns d-flex align-items-center gap-4">
 
                                     {
@@ -84,7 +84,7 @@ const Header =()=>{
                                     <Button className="btn secondary__btn">
                                         <Link to='/signin'>Login</Link>
                                     </Button>
-                                    <Button className="btn primary__btn">
+                                    <Button className="btn primary__btn button">
                                         <Link to='/signup'>Register</Link>
                                     </Button>
                                     </>

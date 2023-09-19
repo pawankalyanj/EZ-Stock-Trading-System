@@ -1,68 +1,47 @@
 import React from "react";
 import '../styles/home.css';
-import {Container, Row,Col} from "reactstrap";
+import {Container, Row,Col,Button} from "reactstrap";
 import experienceImg from "../assets/images/stockExperience.jpg";
 import heroVideo from '../assets/videos/landing_vid.mp4';
 import Subtitle from '../shared/Subtitle'
 import Testimonials from "../components/Testimonial/Testimonial";
 import Newsletter from "../shared/Newsletter";
+
+import {NavLink,Link,Navigate} from 'react-router-dom'
 const Home = ()=>{
     return <div>
-        <section>
-            <Container>
+        <section className="homeBackground">
+            <Container className="homeBackground">
                 <Row>
                     <Col lg='6'>
                         <div className="hero__content">
-                            <div className="hero__subtitle d-flex align-items-center">
-                                <Subtitle subtitle={'Must Know before Invseting'}/>
-                            </div>
-                            <h1> Invest for better Future!!! <span className="highlight"></span></h1>
+                            <h1 className="heading"> Invest for better Future!!! <span className="highlight"></span></h1>
                             <p> 
-                                We make investing simpler and profitable.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
                             </p>    
 
                         </div>
                     </Col>
                     {/* start images*/ }
-                    <Col lg='6'>
-                        <div className="hero__img-box mt-5">
-                            <video controls=" autoplay">
+                    <Col>
+                <div className="hero__img-box mt-5">
+                            <video controls autoplay muted>
                                 <source src={heroVideo} type="video/mp4" alt=""/>
                             </video> 
-                        </div>
-                    </Col>
+                            </div>
+                </Col>
                 </Row>
+                    <Button className="btn primary__btn button">
+                       <Link to='/signup'>Get Started</Link>
+                    </Button>
             </Container>
       </section>
-    <section>
+    <section className="homeBackground">
         <Container>
             <Row>
-                <Col lg='6'>
-                    <div className="experience__content">
-                        <Subtitle subtitle={'Experience'}/>
-                        <h2>With all our experience <br/> we will serve you</h2>
-                        <p> Lorem posum</p>
-
-                    </div>
-                    <div className="counter__wrapper d-flex align-items-center gap-5">
-                    <div className="counter__box">
-                        <span>5+</span>
-                        <h6> Successful portfolios</h6>
-                    </div>
-                    <div className="counter__box">
-                        <span>2+</span>
-                        <h6> Regular clients</h6>
-                    </div>
-                    <div className="counter__box">
-                        <span>1+</span>
-                        <h6> Years of experience</h6>
-                    </div>
-                    </div>
+                <Col>
                 </Col>
-                <Col lg='6'>
-                    <div className="experience__img">
-                        <img src={experienceImg} alt=""/>
-                    </div>
+                <Col>
                 </Col>
             </Row>
         </Container>
@@ -74,7 +53,6 @@ const Home = ()=>{
     <Container>
         <Row>
             <Col lg="12">
-                <Subtitle subtitle={"Fans Love"} />
                 <h2 className="testimonial__title"> What our fans say about us </h2>
             </Col>
             <Col lg="12">
