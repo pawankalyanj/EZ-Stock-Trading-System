@@ -34,6 +34,7 @@
 
 .hero__img-box img, .hero__img-box video{
    height: 350px;
+   width: 400px;
    border-radius: 20px;
    border: 1px solid var(--secondary--color);
    object-fit: cover;

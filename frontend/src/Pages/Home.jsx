@@ -27,7 +27,7 @@ const Home = ()=>{
                     {/* start images*/ }
                     <Col>
                 <div className="hero__img-box mt-5">
-                            <video controls autoplay muted>
+                            <video autoPlay loop muted>
                                 <source src={heroVideo} type="video/mp4" alt=""/>
                             </video> 
                             </div>

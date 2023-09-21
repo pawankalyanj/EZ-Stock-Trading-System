@@ -12,7 +12,6 @@ import { WebSocketServer } from "ws";
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 4000
-const MONGO_URI = process.env.MONGO_URI;
 const uri = "mongodb+srv://ez-stock:LdqkS3emZ1N4MACV@cluster0.wzleh2b.mongodb.net/Votes?retryWrites=true&w=majority";
  const corsOptions = {
      origin: true,
