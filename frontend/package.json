@@ -20,7 +20,8 @@
     "remixicon": "^2.5.0",
     "slick-carousel": "^1.8.1",
     "stripe": "^13.6.0",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "websocket": "^1.0.34"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -16,6 +16,7 @@
     "mongoose": "^7.5.2",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
+    "ws": "^8.14.1",
     "yahoo-finance": "^0.3.8"
   }
 }

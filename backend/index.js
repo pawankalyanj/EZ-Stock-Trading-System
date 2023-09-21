@@ -7,11 +7,13 @@ import userRoute from './routers/users.js'
 import mongoose from "mongoose";
 import yahooFinance from 'yahoo-finance';
 import Vote from './models/StockVoting.js';
+import { WebSocketServer } from "ws";
 
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 4000
 const MONGO_URI = process.env.MONGO_URI;
+const uri = "mongodb+srv://ez-stock:LdqkS3emZ1N4MACV@cluster0.wzleh2b.mongodb.net/Votes?retryWrites=true&w=majority";
  const corsOptions = {
      origin: true,
      credentials: true
@@ -21,19 +23,8 @@ app.get("/", (req,res)=> {
     res.send("api is running");
 })
 
-mongoose.set("strictQuery",false);
-const connect = async () => {
-    try{
-        await mongoose.connect(MONGO_URI,{
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        })
-        console.log('MongoDB database connected');
-    }
-    catch(err){
-        console.log('MongoDB database connection failed');
-    }
-}
+mongoose.connect(uri).then(r =>
+console.log("DataBase is Connected"))
 
 //middleware
 app.use(express.json());
@@ -41,6 +32,7 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
+
 // Yahoo Finance symbol validation
 app.get('/api/validateSymbol/:symbol', async (req, res) => {
     const symbol = req.params.symbol;
@@ -98,6 +90,40 @@ app.get('/api/votes', async (req, res) => {
         return res.status(500).json({ error: 'Error fetching votes' });
     }
 });
+
 app.listen(port, () => {
-    connect().then(r => console.log(`server listening on port ${port}`));
-        });
+    console.log(`server listening on port ${port}`)
+});
+
+const wss = new WebSocketServer({ noServer: true });
+wss.on('connection', (ws) => {
+    console.log('WebSocket client connected');
+
+    // Whenever a new vote is submitted, broadcast the updated votes
+    Vote.watch().on('change', () => {
+        Vote.aggregate([
+            {
+                $group: {
+                    _id: '$symbol',
+                    buyCount: {
+                        $sum: { $cond: [{ $eq: ['$vote', 'buy'] }, 1, 0] },
+                    },
+                    sellCount: {
+                        $sum: { $cond: [{ $eq: ['$vote', 'sell'] }, 1, 0] },
+                    },
+                },
+            },
+        ])
+            .then((votes) => {
+                const message = JSON.stringify({ type: 'votes', data: votes });
+                wss.clients.forEach((client) => {
+                    if (client.readyState === WebSocketServer.OPEN) {
+                        client.send(message);
+                    }
+                });
+            })
+            .catch((error) => {
+                console.error('Error aggregating votes:', error);
+            });
+    });
+});

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './StockVoting.css';
+import WebSocket from 'websocket';
+import {BASE_URL} from '../utils/config'
 
 function StockVoting() {
     const [symbol, setSymbol] = useState('');
@@ -7,20 +9,32 @@ function StockVoting() {
     const [isValidSymbol, setIsValidSymbol] = useState(false);
     const [votes, setVotes] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+    const ws = new WebSocket.w3cwebsocket('ws://localhost:4000');
+    // Create a state to hold the votes
 
     useEffect(() => {
         if (symbol) {
-            fetch(`/api/validateSymbol/${symbol}`)
+            fetch(`${BASE_URL}/api/validateSymbol/${symbol}`)
                 .then((response) => response.json())
                 .then((data) => setIsValidSymbol(data.valid));
         }
     }, [symbol]);
 
     useEffect(() => {
-        fetch('/api/votes')
+        fetch(`${BASE_URL}/api/votes`)
             .then((response) => response.json())
             .then((data) => setVotes(data))
             .catch((error) => console.error('Error fetching votes:', error));
+    }, []);
+
+    // Handle WebSocket messages
+    useEffect(() => {
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'votes') {
+                setVotes(data.data);
+            }
+        };
     }, []);
 
     const handleVoteSubmit = () => {
@@ -29,7 +43,7 @@ function StockVoting() {
             return;
         }
 
-        fetch('/api/vote', {
+        fetch(`${BASE_URL}/api/vote`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +56,7 @@ function StockVoting() {
                 setSymbol('');
                 setVote('');
                 // Refresh vote results
-                fetch('/api/votes')
+                fetch(`${BASE_URL}/api/votes`)
                     .then((response) => response.json())
                     .then((data) => setVotes(data))
                     .catch((error) => console.error('Error fetching votes:', error));
