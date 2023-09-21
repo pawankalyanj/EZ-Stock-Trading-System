@@ -66,7 +66,7 @@ const Header =()=>{
         <header className="header" ref={headerRef}>
             <Container>
                 <Row className="headerRow">
-                    <div className="nav_wrapper d-flex align-items-center justify-content-between" >
+                    <div className="nav_wrapper divContainer d-flex align-items-center justify-content-between" >
                         {/*logo start*/}
                         <div className="logo">
                             <img src={logo} alt=""/>

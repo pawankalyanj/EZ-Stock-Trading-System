@@ -8,9 +8,11 @@
 .loginButtons{
 padding-left: 10%;
 margin-bottom:0px !important;
-
 }
 
+.divContainer{
+    margin-bottom:0px !important;
+}
 
 .logo img{
     width:25%;
