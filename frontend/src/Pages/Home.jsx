@@ -17,7 +17,9 @@ const Home = ()=>{
                         <div className="hero__content">
                             <h1 className="heading"> Invest for better Future!!! <span className="highlight"></span></h1>
                             <p> 
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                            Welcome to EZT.
+                            your one-stop destination for stock market insights, news, and investment resources. 
+                            Whether you're a seasoned trader or just starting your investment journey, we have the tools and knowledge to help you succeed in the world of finance.
                             </p>    
 
                         </div>

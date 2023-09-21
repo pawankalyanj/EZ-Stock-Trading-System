@@ -38,11 +38,10 @@ const Signin =()=>{
             });
 
             const result = await res.json();
-            console.log("reslt",result);
+           
             if(!res.ok) alert(result.message);
 
             dispatch({type: 'LOGIN_SUCCESS', payload: result.data});
-            console.log("resuktant",result.data);
             navigate('/');
         }
         catch(err){
