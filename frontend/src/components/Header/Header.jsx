@@ -1,6 +1,6 @@
 import React,{useRef,useEffect, useContext} from "react"
 import {Container,Row,Button} from 'reactstrap'
-import {NavLink,Link,Navigate} from 'react-router-dom'
+import {NavLink,Link,Navigate,useNavigate} from 'react-router-dom'
 import logo from "../../assets/images/logo.png"
 import "./header.css"
 
@@ -26,6 +26,8 @@ const Header =()=>{
 
     const headerRef = useRef(null);
     const {user, dispatch} = useContext(AuthContext);
+
+    const navigate =useNavigate();
     const logout = () =>{
         dispatch({type: 'LOGOUT'});
         Navigate('/');
@@ -42,11 +44,24 @@ const Header =()=>{
             }
         })
     }
+ 
 
     useEffect(()=>{
+        
         stickyHeaderFunc()
         return window.removeEventListener('scroll',stickyHeaderFunc)
-    })
+
+    });
+
+    const checkLogin =(item)=>{  
+        if(item.path=='/stocks'){
+           if(!user){
+            navigate('/signin');
+           }
+            
+        }
+    }
+    
     return <div>
         <header className="header" ref={headerRef}>
             <Container>
@@ -61,8 +76,8 @@ const Header =()=>{
                             <ul className="menu d-flex align-items-center gap-5">
                                 {
                                     nav_links.map((item,index)=>(
-                                        <li className="nav_item" key={index}>
-                                            <NavLink to={item.path} className={navClass=> navClass.isActive ? "active_link" : ""}> {item.display}</NavLink>
+                                        <li className="nav_item" key={index} onClick ={()=>checkLogin(item)} >      
+                                           <NavLink to={item.path} className={navClass=> navClass.isActive ? "active_link" : ""}>{item.display}</NavLink>
                                         </li>
                                     ))
                                 }
@@ -82,10 +97,10 @@ const Header =()=>{
                                      </>):(<>
                 
                                     <Button className="btn secondary__btn">
-                                        <Link to='/signin'>Login</Link>
+                                        <Link to='/signin'>Signin</Link>
                                     </Button>
                                     <Button className="btn primary__btn button">
-                                        <Link to='/signup'>Register</Link>
+                                        <Link to='/signup'>Singnup</Link>
                                     </Button>
                                     </>
                                     )}

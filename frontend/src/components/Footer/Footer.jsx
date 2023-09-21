@@ -15,17 +15,10 @@ const nav__links = [
         path:'/about',
         display:'About'
     },
-    {
-        path: '/stocks',
-        display: 'Stocks'
-    }
 ];
 
 const quick__links = [
-    {
-        path:'/gallery',
-        display:'Gallery'
-    },
+
     {
         path:'/login',
         display:'Login'

@@ -60,7 +60,6 @@ const Home = ()=>{
             <Col lg="12">
             <Testimonials/>
             </Col>
-
         </Row>
     </Container>
    </section>
