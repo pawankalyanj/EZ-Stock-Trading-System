@@ -9,10 +9,11 @@ import yahooFinance from 'yahoo-finance';
 import Vote from './models/StockVoting.js';
 import { WebSocketServer } from "ws";
 
+
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 4000
-const uri = "mongodb+srv://ez-stock:LdqkS3emZ1N4MACV@cluster0.wzleh2b.mongodb.net/Votes?retryWrites=true&w=majority";
+const MONGO_URI = process.env.REACT_APP_MONGO_URI;
  const corsOptions = {
      origin: true,
      credentials: true
@@ -22,7 +23,7 @@ app.get("/", (req,res)=> {
     res.send("api is running");
 })
 
-mongoose.connect(uri).then(r =>
+mongoose.connect(MONGO_URI).then(r =>
 console.log("DataBase is Connected"))
 
 //middleware
@@ -33,7 +34,7 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
 
 // Yahoo Finance symbol validation
-app.get('/api/validateSymbol/:symbol', async (req, res) => {
+app.get('/api/v1/validateSymbol/:symbol', async (req, res) => {
     const symbol = req.params.symbol;
     try {
         const quote = await yahooFinance.quote({ symbol });
@@ -47,7 +48,7 @@ app.get('/api/validateSymbol/:symbol', async (req, res) => {
 });
 
 // Submit a vote
-app.post('/api/vote', async (req, res) => {
+app.post('/api/v1/vote', async (req, res) => {
     const { symbol, vote } = req.body;
 
     try {
@@ -68,7 +69,7 @@ app.post('/api/vote', async (req, res) => {
 });
 
 // Get all votes with counts
-app.get('/api/votes', async (req, res) => {
+app.get('/api/v1/votes', async (req, res) => {
     try {
         const votes = await Vote.aggregate([
             {

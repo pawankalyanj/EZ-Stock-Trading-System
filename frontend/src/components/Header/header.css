@@ -2,14 +2,18 @@
     width: 100%;
     line-height: 80px;
 }
-
+.headerRow.row{
+    margin-bottom: 0px !important;
+}
 .loginButtons{
 padding-left: 10%;
+margin-bottom:0px !important;
+
 }
 
 
 .logo img{
-    width:18%;
+    width:25%;
 }
 
 .menu{

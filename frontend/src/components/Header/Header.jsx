@@ -50,7 +50,7 @@ const Header =()=>{
     return <div>
         <header className="header" ref={headerRef}>
             <Container>
-                <Row>
+                <Row className="headerRow">
                     <div className="nav_wrapper d-flex align-items-center justify-content-between" >
                         {/*logo start*/}
                         <div className="logo">

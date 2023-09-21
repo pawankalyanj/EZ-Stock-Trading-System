@@ -14,14 +14,14 @@ function StockVoting() {
 
     useEffect(() => {
         if (symbol) {
-            fetch(`${BASE_URL}/api/validateSymbol/${symbol}`)
+            fetch(`${BASE_URL}/validateSymbol/${symbol}`)
                 .then((response) => response.json())
                 .then((data) => setIsValidSymbol(data.valid));
         }
     }, [symbol]);
 
     useEffect(() => {
-        fetch(`${BASE_URL}/api/votes`)
+        fetch(`${BASE_URL}/votes`)
             .then((response) => response.json())
             .then((data) => setVotes(data))
             .catch((error) => console.error('Error fetching votes:', error));
@@ -43,7 +43,7 @@ function StockVoting() {
             return;
         }
 
-        fetch(`${BASE_URL}/api/vote`, {
+        fetch(`${BASE_URL}/vote`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ function StockVoting() {
                 setSymbol('');
                 setVote('');
                 // Refresh vote results
-                fetch(`${BASE_URL}/api/votes`)
+                fetch(`${BASE_URL}/votes`)
                     .then((response) => response.json())
                     .then((data) => setVotes(data))
                     .catch((error) => console.error('Error fetching votes:', error));

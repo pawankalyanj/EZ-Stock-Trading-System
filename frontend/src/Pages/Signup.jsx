@@ -17,6 +17,8 @@ const Signup =()=>{
         password:undefined  
     });
 
+
+
     const navigate =useNavigate();
     const {dispatch} = useContext(AuthContext);
 
@@ -36,13 +38,14 @@ const Signup =()=>{
                 },
                 body: JSON.stringify(credentials)
             });
-
+            
             const result = await res.json();
-
+                console.log("result",result)
+                console.log("resu",res)
             if(!res.ok) alert(result.message);
 
             dispatch({type: 'REGISTER_SUCCESS'});
-            navigate('/login');
+            navigate('/signin');
         }
         catch(err){
             alert(err.message);
