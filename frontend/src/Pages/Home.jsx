@@ -1,13 +1,11 @@
 import React from "react";
 import '../styles/home.css';
 import {Container, Row,Col,Button} from "reactstrap";
-import experienceImg from "../assets/images/stockExperience.jpg";
 import heroVideo from '../assets/videos/landing_vid.mp4';
-import Subtitle from '../shared/Subtitle'
 import Testimonials from "../components/Testimonial/Testimonial";
 import Newsletter from "../shared/Newsletter";
 
-import {NavLink,Link,Navigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 const Home = ()=>{
     return <div>
         <section className="homeBackground">
