@@ -1,0 +1,41 @@
+/* HistoricalDataPage.css */
+
+.historical-data-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+}
+
+.historical-data-page h2 {
+    margin-bottom: 10px;
+}
+
+.historical-data-page label {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%; /* Ensure labels take full width */
+}
+
+.historical-data-page .symbol-container,
+.historical-data-page .dates-container {
+    width: 100%;
+    max-width: 300px; /* Adjust the maximum width based on your preference */
+}
+
+.historical-data-page input {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.historical-data-page button {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

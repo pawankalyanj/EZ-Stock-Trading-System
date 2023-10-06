@@ -19,6 +19,10 @@ const nav_links = [
     {
         path: '/stocks',
         display: 'Stocks'
+    },
+    {
+        path: '/predict',
+        display: 'StockPrediction'
     }
 ]
 
@@ -54,7 +58,7 @@ const Header =()=>{
     });
 
     const checkLogin =(item)=>{  
-        if(item.path=='/stocks'){
+        if(item.path==='/stocks' || item.path ==="/predict"){
            if(!user){
             navigate('/signin');
            }

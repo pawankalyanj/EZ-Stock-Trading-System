@@ -33,31 +33,29 @@ app.use(cookieParser());
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
 
+const validSymbols = ["GOOGL", "AAPL", "AMZN", "ADBE", "CSCO",
+    "DELL", "HPQ", "IBM", "INTL", "INTU", "LYFT", "META", "MSFT",
+    "NFLX", "NVDA", "ORCL", "PYPL", "QCOM", "SONY", "TSLA", "UBER"];
+
 // Yahoo Finance symbol validation
-app.get('/api/v1/validateSymbol/:symbol', async (req, res) => {
-    const symbol = req.params.symbol;
-    try {
-        const quote = await yahooFinance.quote({ symbol });
-        if (quote && quote.symbol === symbol) {
-            return res.json({ valid: true });
-        }
-        return res.json({ valid: false });
-    } catch (error) {
-        return res.json({ valid: false, error: 'Invalid symbol' });
+app.get('/api/v1/validateSymbol/:symbol', (req, res) => {
+    const symbol = req.params.symbol.toUpperCase(); // Convert to uppercase for case-insensitivity
+    if (validSymbols.includes(symbol)) {
+        res.json({ valid: true });
+    } else {
+        res.json({ valid: false, error: 'Invalid symbol' });
     }
 });
 
-// Submit a vote
 app.post('/api/v1/vote', async (req, res) => {
     const { symbol, vote } = req.body;
 
-    try {
-        // Check if the symbol is valid
-        const quote = await yahooFinance.quote({ symbol });
-        if (!quote || quote.symbol !== symbol) {
-            return res.status(400).json({ error: 'Invalid symbol' });
-        }
+    // Check if the symbol is valid
+    if (!validSymbols.includes(symbol)) {
+        return res.status(400).json({ error: 'Invalid symbol' });
+    }
 
+    try {
         // Store the vote in MongoDB
         const newVote = new Vote({ symbol, vote });
         await newVote.save();
