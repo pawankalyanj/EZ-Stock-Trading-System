@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser'
 import authRoute from './routers/auth.js'
 import userRoute from './routers/users.js'
 import mongoose from "mongoose";
-import yahooFinance from 'yahoo-finance';
 import Vote from './models/StockVoting.js';
 import { WebSocketServer } from "ws";
 
