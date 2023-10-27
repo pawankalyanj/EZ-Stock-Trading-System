@@ -49,7 +49,7 @@ Overall, this architecture provides a robust and scalable solution for stock pri
 - Node.js serves as the initial point of contact when a user enters a stock ticker symbol.
 - It validates the entered symbol's correctness.
 - Valid data is then communicated to a Flask web server, which executes the Python machine learning prediction algorithm.
-- Flask utilizes the yfinance library to fetch real-time stock data.
+- Flask utilizes the Yfinance library to fetch real-time stock data.
 - The prediction algorithm generates a predicted stock price, which is returned to Node.js. <br />
 <br />
 In summary, this architecture subsystem seamlessly connects all the backend components. Additionally, it employs Flask and machine learning techniques for stock price prediction, ensuring users receive timely and accurate information for their trading decisions. This subsystem is a fundamental part of our comprehensive system, combining cutting-edge web technologies and machine learning for an optimal user experience.
