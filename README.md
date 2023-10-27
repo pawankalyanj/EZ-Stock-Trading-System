@@ -43,6 +43,8 @@ The machine learning algorithm is responsible for predicting the stock price for
 Overall, this architecture provides a robust and scalable solution for stock price prediction. It leverages various technologies such as React, Node.js, MongoDB, and AWS Lambda to provide a seamless user experience while leveraging machine learning to generate accurate predictions. The use of MongoDB to store all the data related to stock prices and predictions provides a scalable and reliable solution for storing large amounts of data.
 # Architecture Subsystems
 
+![Blank diagram](https://github.com/pawankalyanj/EZ-Stock-Trading-System/assets/98665897/dc97b03a-f7ec-41ca-b901-78c9f4456280)
+
 # Stock Price Prediction Subsystem:
 - Node.js serves as the initial point of contact when a user enters a stock ticker symbol.
 - It validates the entered symbol's correctness.
