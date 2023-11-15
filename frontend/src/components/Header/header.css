@@ -1,6 +1,7 @@
 .header{
     width: 100%;
-    line-height: 80px;
+    /* line-height: 80px; */
+    height: 150px;
 }
 .headerRow.row{
     margin-bottom: 0px !important;
@@ -15,7 +16,7 @@ margin-bottom:0px !important;
 }
 
 .logo img{
-    width:25%;
+    width: 200px;
 }
 
 .menu{
@@ -50,3 +51,22 @@ margin-bottom:0px !important;
     top:0;
     left: 0;
 }
+
+.marketWatchLink,
+.stockProjectionsLink,
+.aboutLink {
+  color: #000; }
+
+  .dark-font {
+    color: #000; /* Set your desired dark font color */
+  }
+
+
+  .white-link {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+  }
+
+  .white-link:hover {
+    color: white;
+  }

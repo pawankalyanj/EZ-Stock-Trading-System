@@ -116,3 +116,74 @@
  background: linear-gradient(138deg, rgb(32, 201, 255) 36.7%, rgb(0, 8, 187) 84.4%, rgb(255, 255, 255) 119.7%);
 
 }
+
+
+#video-container {
+   position: relative;
+   height: 100vh;
+   overflow: hidden;
+ }
+
+ /* Style for the video element */
+ .video {
+   width: 100%;
+   height: auto;
+   object-fit: cover;
+   filter: blur(100); /* Initial blur value is 0 */
+   transition: filter 1s ease-in-out; /* Transition effect for the blur property */
+ }
+
+ /* Style for the text overlay */
+ .text-overlay {
+   position: absolute;
+   top: 50%;
+   left: 80%;
+   transform: translate(-50%, -50%);
+   color: white;
+   text-align:inherit;
+   font-size: 20px;
+   white-space: nowrap;
+ }
+
+ .text-overlay h1 {
+   font-size: 40px;
+ }
+
+ .text-overlay ul {
+   list-style-type: disc; /* or use 'circle' or 'square' for different bullet types */
+ }
+
+ .text-overlay ul li {
+   margin-top: 30px;
+   margin-bottom: 30px; /* Add space below each bullet point */
+ }
+
+ /*  */
+ 
+ .btn {
+   background-color: rgba(52, 152, 219, 0.5); /* Adjust the RGB values and opacity as needed */
+   color: rgb(0, 0, 0);
+   padding: 10px 20px; /* Adjust padding as needed */
+   border: none;
+   border-radius: 5px;
+   text-decoration: none;
+   display: inline-block;
+   transition: background-color 0.3s ease; /* Optional: Add a smooth transition effect */
+   left: 50%;
+ }
+ 
+ .btn:hover {
+   background-color: rgba(52, 152, 219, 0.8); /* Adjust the hover state transparency */
+ }
+ 
+/* Style for the button */
+.btn.btn-outline-light:hover {
+   background-color: black;
+   color: white;
+ }
+ 
+ /* Style for the link inside the button */
+ .btn.btn-outline-light:hover a {
+   color: white;
+   text-decoration: none;
+ }
