@@ -41,7 +41,7 @@ function StockPrediction() {
                 </label>
             </div>
 
-            <div className="dates-container">
+            {/* <div className="dates-container">
                 <label>
                     Start Date (mm/dd/yyyy):
                     <input
@@ -59,7 +59,7 @@ function StockPrediction() {
                         onChange={(e) => setEndDate(e.target.value)}
                     />
                 </label>
-            </div>
+            </div> */}
 
             <button onClick={fetchData}>Submit</button>
         </div>

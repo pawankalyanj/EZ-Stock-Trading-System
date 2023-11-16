@@ -6,8 +6,15 @@ from sklearn.preprocessing import MinMaxScaler
 from keras.models import load_model
 from datetime import date
 from flask import Flask, request, jsonify, render_template, send_file
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+from flask_cors import CORS
+from io import BytesIO
+import json
+
 
 app = Flask(__name__)
+CORS(app)
 
 # Mapping of ticker symbols to model filenames.
 model_mapping = {
@@ -50,6 +57,8 @@ def select_model(ticker):
             return "Model not found", 404
     else:
         return "Invalid ticker symbol", 400
+
+
 
 # Predicts the next day's stock price based on the input stock symbol.
 @app.route('/predict/<stock_symbol>', methods=['GET'])
@@ -100,15 +109,43 @@ def predict(stock_symbol):
             else:
                 sign = "-"
 
-            return jsonify({'result': f"Tomorrow's predicted stock price: {sign}{predicted_price:.2f}"})
-            # return jsonify({'result': f"Tomorrow's predicted stock price: {sign}{predicted_price:.2f}",
-            #                 'model_path': model_path})
+            return jsonify({'result': f"{sign}{predicted_price:.2f}"})
+            return jsonify({'result': f"Tomorrow's predicted stock price: {sign}{predicted_price:.2f}",
+                            'model_path': model_path})
         except Exception as e:
             return jsonify({'error': f"Data preparation error: {str(e)}"})
 
     except Exception as e:
         return jsonify({'error': str(e)})
     
+
+# Obtains 14 days of historical stock price data for the input stock symbol.
+@app.route('/get_stock_data/<stock_symbol>', methods=['GET'])
+def fetch_stock_data(stock_symbol):
+    try:
+        end_date = date.today()
+        start_date = (end_date - pd.DateOffset(days=14)).strftime('%Y-%m-%d')
+        end_date = end_date.strftime('%Y-%m-%d')
+
+        stock_data = yf.download(stock_symbol, start=start_date, end=end_date)
+        stock_data['Close'] = stock_data['Close'].round(2)
+
+        new_data = pd.DataFrame({'Date': pd.to_datetime(stock_data.index).strftime('%Y-%m-%d'), 'Price': stock_data['Close'].values})
+        
+        # Convert DataFrame to JSON
+        new_data_json = new_data.to_json(orient='records', date_format='iso')
+
+        # Load JSON and convert the date to the desired format
+        loaded_data = json.loads(new_data_json)
+        for entry in loaded_data:
+            entry['Date'] = datetime.strptime(entry['Date'], '%Y-%m-%d').strftime('%Y-%m-%d')
+
+        return jsonify(loaded_data)
+
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
