@@ -4,6 +4,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import authRoute from './routers/auth.js'
 import userRoute from './routers/users.js'
+import newsLetterRoute from './routers/newsletter.js'
 import mongoose from "mongoose";
 import yahooFinance from 'yahoo-finance';
 import Vote from './models/StockVoting.js';
@@ -32,6 +33,7 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
+app.use('/api/v1/subscribe, newsLetterRoute');
 
 // Yahoo Finance symbol validation
 app.get('/api/v1/validateSymbol/:symbol', async (req, res) => {
@@ -46,6 +48,8 @@ app.get('/api/v1/validateSymbol/:symbol', async (req, res) => {
         return res.json({ valid: false, error: 'Invalid symbol' });
     }
 });
+
+
 
 // Submit a vote
 app.post('/api/v1/vote', async (req, res) => {
