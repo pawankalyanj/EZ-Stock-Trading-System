@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './StockVoting.css';
+import '../styles/StockVoting.css';
 import WebSocket from 'websocket';
 import {BASE_URL} from '../utils/config'
 
 function StockVoting() {
     const [symbol, setSymbol] = useState('');
+    const validSymbols = ["GOOGL", "AAPL", "AMZN", "ADBE", "CSCO", "DELL", "HPQ", "IBM", "INTL", "INTU", "LYFT", "META", "MSFT", "NFLX", "NVDA", "ORCL", "PYPL","QCOM","SONY","TSLA","UBER"];
     const [vote, setVote] = useState('');
     const [isValidSymbol, setIsValidSymbol] = useState(false);
     const [votes, setVotes] = useState([]);
@@ -35,11 +36,17 @@ function StockVoting() {
                 setVotes(data.data);
             }
         };
-    }, []);
+    }, );
 
     const handleVoteSubmit = () => {
-        if (!isValidSymbol || !symbol || !vote) {
+        if (!symbol || !vote) {
             setErrorMessage('Please enter a valid symbol and select a vote');
+            return;
+        }
+
+        const uppercaseSymbol = symbol.toUpperCase(); // Convert to uppercase for consistency
+        if (!validSymbols.includes(uppercaseSymbol)) {
+            setErrorMessage('Invalid symbol. Please enter one of: GOOGL, AAPL, AMZN');
             return;
         }
 
@@ -48,7 +55,7 @@ function StockVoting() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ symbol, vote }),
+            body: JSON.stringify({ symbol: uppercaseSymbol, vote: vote }),
         })
             .then((response) => response.json())
             .then(() => {
@@ -111,4 +118,3 @@ function StockVoting() {
 }
 
 export default StockVoting;
-

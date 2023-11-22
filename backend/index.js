@@ -6,13 +6,17 @@ import authRoute from './routers/auth.js'
 import userRoute from './routers/users.js'
 import newsLetterRoute from './routers/newsletter.js'
 import mongoose from "mongoose";
-import yahooFinance from 'yahoo-finance';
 import Vote from './models/StockVoting.js';
 import { WebSocketServer } from "ws";
-
+import request from 'request'
+import axios from 'axios'
 
 dotenv.config()
 const app = express()
+
+app.use(cors())
+app.use(express.json())
+
 const port = process.env.PORT || 4000
 const MONGO_URI = process.env.REACT_APP_MONGO_URI;
  const corsOptions = {
@@ -35,17 +39,17 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/subscribe, newsLetterRoute');
 
+const validSymbols = ["GOOGL", "AAPL", "AMZN", "ADBE", "CSCO",
+    "DELL", "HPQ", "IBM", "INTL", "INTU", "LYFT", "META", "MSFT",
+    "NFLX", "NVDA", "ORCL", "PYPL", "QCOM", "SONY", "TSLA", "UBER"];
+
 // Yahoo Finance symbol validation
-app.get('/api/v1/validateSymbol/:symbol', async (req, res) => {
-    const symbol = req.params.symbol;
-    try {
-        const quote = await yahooFinance.quote({ symbol });
-        if (quote && quote.symbol === symbol) {
-            return res.json({ valid: true });
-        }
-        return res.json({ valid: false });
-    } catch (error) {
-        return res.json({ valid: false, error: 'Invalid symbol' });
+app.get('/api/v1/validateSymbol/:symbol', (req, res) => {
+    const symbol = req.params.symbol.toUpperCase(); // Convert to uppercase for case-insensitivity
+    if (validSymbols.includes(symbol)) {
+        res.json({ valid: true });
+    } else {
+        res.json({ valid: false, error: 'Invalid symbol' });
     }
 });
 
@@ -55,13 +59,12 @@ app.get('/api/v1/validateSymbol/:symbol', async (req, res) => {
 app.post('/api/v1/vote', async (req, res) => {
     const { symbol, vote } = req.body;
 
-    try {
-        // Check if the symbol is valid
-        const quote = await yahooFinance.quote({ symbol });
-        if (!quote || quote.symbol !== symbol) {
-            return res.status(400).json({ error: 'Invalid symbol' });
-        }
+    // Check if the symbol is valid
+    if (!validSymbols.includes(symbol)) {
+        return res.status(400).json({ error: 'Invalid symbol' });
+    }
 
+    try {
         // Store the vote in MongoDB
         const newVote = new Vote({ symbol, vote });
         await newVote.save();
@@ -131,3 +134,39 @@ wss.on('connection', (ws) => {
             });
     });
 });
+
+// Stock Prediction API from Flask App
+app.get('/get_stock_prediction/:stock_symbol', async(req, res) => {
+
+    try {
+        const stock_symbol = req.params.stock_symbol;
+        const flaskAppURL = 'http://127.0.0.1:5000/';
+
+        const stock_prediction = await axios.get(`${flaskAppURL}/predict/${stock_symbol}`);
+        res.status(200).json(stock_prediction.data);
+
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+// Get stock data from Flask App
+app.get('/get_stock_data/:stock_symbol', async(req, res) => {
+
+    try {
+        const stock_symbol = req.params.stock_symbol;
+        const flaskAppURL = 'http://127.0.0.1:5000/';
+
+        const stock_data = await axios.get(`${flaskAppURL}/get_stock_data/${stock_symbol}`);
+        res.status(200).json(stock_data.data);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+
+
+
+app.get("/message", (req, res) => {
+  res.json({ message: "Hello from server!" });
+});
+
+})

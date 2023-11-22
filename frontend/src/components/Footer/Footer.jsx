@@ -89,21 +89,21 @@ return (
                                 <span><i class="ri-map-pin-line"></i></span>
                                 Address:
                             </h6>
-                            <p className="mb-0"> India</p>
+                            <p className="mb-0"> San Jose, CA</p>
                         </ListGroupItem>
                         <ListGroupItem className="ps-0 border-0 d-flex align-items-center-gap-3">
                             <h6 className="mb-0 d-flex align-items-center gap-2">
                                 <span><i class="ri-mail-line"></i></span>
                                 Email:
                             </h6>
-                            <p className="mb-0">saivennela.garikapati@gmail.com</p>
+                            <p className="mb-0">example@gmail.com</p>
                         </ListGroupItem>
                         <ListGroupItem className="ps-0 border-0 d-flex align-items-center-gap-3">
                             <h6 className="mb-0 d-flex align-items-center gap-2">
                                 <span><i class="ri-phone-line"></i></span>
                                 Phone: 
                             </h6>
-                            <p className="mb-0"> +1 408-XXX-XXXX </p>
+                            <p className="mb-0"> +1 408-000-1111 </p>
                         </ListGroupItem>
                     </ListGroup>
                 </Col>

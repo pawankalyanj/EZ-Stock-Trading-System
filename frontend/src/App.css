@@ -3,7 +3,12 @@
 
 :root {
   --primary-color: #ff7e01;
-  --secondary-color: linear-gradient(109.8deg, rgb(62, 5, 116) -5.2%, rgb(41, 14, 151) -5.2%, rgb(216, 68, 148) 103.3%);
+  --secondary-color: linear-gradient(
+    109.8deg,
+    rgb(62, 5, 116) -5.2%,
+    rgb(41, 14, 151) -5.2%,
+    rgb(216, 68, 148) 103.3%
+  );
   --heading-color: #0b2727;
   --text-color: #6e7074;
   --font-name: "Montserrat", sans-serif;
