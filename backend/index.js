@@ -93,6 +93,20 @@ app.get('/api/v1/votes', async (req, res) => {
     }
 });
 
+app.get('/api/v1/get_stock_prediction/stock_symbol', async(req, res) => {
+
+    try {
+        const stock_symbol = req.params.stock_symbol;
+        const flaskAppURL = 'http://127.0.0.1:5000/';
+
+        const stock_prediction = await axios.get(`${flaskAppURL}/predict/${stock_symbol}`);
+        res.status(200).json(stock_prediction.data);
+
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 app.listen(port, () => {
     console.log(`server listening on port ${port}`)
 });
@@ -130,20 +144,6 @@ wss.on('connection', (ws) => {
     });
 });
 
-// Stock Prediction API from Flask App
-app.get('/get_stock_prediction/:stock_symbol', async(req, res) => {
-
-    try {
-        const stock_symbol = req.params.stock_symbol;
-        const flaskAppURL = 'http://127.0.0.1:5000/';
-
-        const stock_prediction = await axios.get(`${flaskAppURL}/predict/${stock_symbol}`);
-        res.status(200).json(stock_prediction.data);
-
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
 
 // Get stock data from Flask App
 app.get('/get_stock_data/:stock_symbol', async(req, res) => {

@@ -1,68 +1,54 @@
-import {useState} from "react";
-import "../styles/StockPrediction.css"
-import {BASE_URL} from '../utils/config'
+import React, { useState, useEffect } from 'react';
+import '../styles/StockPrediction.css'
+import axios from 'axios';
+import { BASE_URL } from '../utils/config';
+
 function StockPrediction() {
+    const [stock_symbol, setStockSymbol] = useState('');
+    const [predictedPrice, setPredictedPrice] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const [symbol, setSymbol] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
+    const getStockPrediction = async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}/get_stock_prediction/${stock_symbol}`);
 
-    const fetchData = ()=>{
-        const uppercaseSymbol = symbol.toUpperCase();
-        fetch(`${BASE_URL}/`, {
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({symbol: uppercaseSymbol}),
-        })
-            .then((response)=>response.json())
-            .then(() => {
-                setSymbol('');
-                setStartDate('');
-                setEndDate('');
-            })
-            .catch((error) => console.error("Error fetching predicted price", error));
+            setPredictedPrice(response.data.predictedPrice);
+        } catch (error) {
+            console.error('Error fetching stock prediction:', error);
+            setErrorMessage('Error fetching stock prediction');
+        }
     };
 
+    const handleStockSymbolChange = (e) => {
+        setStockSymbol(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        getStockPrediction();
+    };
 
     return (
-        <div className="historical-data-page">
-            <h2>Stock Prediction</h2>
-
-            <div className="symbol-container">
+        <div className="App">
+            <h1>Stock Prediction</h1>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Stock Symbol:
-                    <input
-                        type="text"
-                        value={symbol}
-                        onChange={(e) => setSymbol(e.target.value)}
-                    />
+                    <input type="text" value={stock_symbol} onChange={handleStockSymbolChange} />
                 </label>
-            </div>
+                <button onClick={handleSubmit}>Get Stock Prediction</button>
+            </form>
 
-            {/* <div className="dates-container">
-                <label>
-                    Start Date (mm/dd/yyyy):
-                    <input
-                        type="text"
-                        value={startDate}
-                        onChange={(e) => setStartDate(e.target.value)}
-                    />
-                </label>
+            {predictedPrice !== null && (
+                <div>
+                    <h2>Predicted Stock Price:</h2>
+                    <p>{predictedPrice}</p>
+                </div>
+            )}
 
-                <label>
-                    End Date (mm/dd/yyyy):
-                    <input
-                        type="text"
-                        value={endDate}
-                        onChange={(e) => setEndDate(e.target.value)}
-                    />
-                </label>
-            </div> */}
-
-            <button onClick={fetchData}>Submit</button>
+            {errorMessage && <p className="error">{errorMessage}</p>}
         </div>
     );
-    }
+}
+
 export default StockPrediction;
