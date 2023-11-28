@@ -11,21 +11,54 @@ function StockPrediction() {
     const getStockPrediction = async () => {
         try {
             const response = await axios.get(`${BASE_URL}/get_stock_prediction/${stock_symbol}`);
-
-            setPredictedPrice(response.data.predictedPrice);
+            console.log('Response:', response);
+    
+            if (response.data && response.data.result !== undefined) {
+                // Extract the numerical value from the string and convert it to a number
+                const predictedPriceNumber = parseFloat(response.data.result);
+                
+                // Check if the conversion is successful
+                if (!isNaN(predictedPriceNumber)) {
+                    setPredictedPrice(predictedPriceNumber);
+                    setErrorMessage(''); // Clear any previous error message
+                } else {
+                    setPredictedPrice(null); // Reset predictedPrice if conversion fails
+                    setErrorMessage('Invalid predictedPrice format');
+                }
+            } else {
+                setPredictedPrice(null); // Reset predictedPrice if response is invalid
+                setErrorMessage('Invalid response format');
+            }
         } catch (error) {
             console.error('Error fetching stock prediction:', error);
+            setPredictedPrice(null); // Reset predictedPrice in case of an error
             setErrorMessage('Error fetching stock prediction');
         }
     };
+    
+    
+    
+
+    
+
+    // const getStockPrediction = async () => {
+    //     try {
+    //         const response = await axios.get(`${BASE_URL}/get_stock_prediction/${stock_symbol}`);
+
+    //         setPredictedPrice(response.data.predictedPrice);
+    //     } catch (error) {
+    //         console.error('Error fetching stock prediction:', error);
+    //         setErrorMessage('Error fetching stock prediction');
+    //     }
+    // };
 
     const handleStockSymbolChange = (e) => {
         setStockSymbol(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        getStockPrediction();
+        await getStockPrediction();
     };
 
     return (
@@ -41,8 +74,8 @@ function StockPrediction() {
 
             {predictedPrice !== null && (
                 <div>
-                    <h2>Predicted Stock Price:</h2>
-                    <p>{predictedPrice}</p>
+                    <h2>Predicted Stock Price: {predictedPrice}</h2>
+                    {/* <p>{predictedPrice}</p> */}
                 </div>
             )}
 

@@ -93,7 +93,7 @@ app.get('/api/v1/votes', async (req, res) => {
     }
 });
 
-app.get('/api/v1/get_stock_prediction/stock_symbol', async(req, res) => {
+app.get('/api/v1/get_stock_prediction/:stock_symbol', async(req, res) => {
 
     try {
         const stock_symbol = req.params.stock_symbol;
