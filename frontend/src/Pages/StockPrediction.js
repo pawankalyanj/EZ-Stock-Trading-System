@@ -369,5 +369,5 @@ function StockPrediction() {
             
     );
 }
-
+}
 export default StockPrediction;
