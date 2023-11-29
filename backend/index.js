@@ -4,7 +4,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import authRoute from './routers/auth.js'
 import userRoute from './routers/users.js'
-import newsLetterRoute from './routers/newsletter.js'
+
 import mongoose from "mongoose";
 import Vote from './models/StockVoting.js';
 import { WebSocketServer } from "ws";
@@ -37,7 +37,7 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
-app.use('/api/v1/subscribe, newsLetterRoute');
+
 
 const validSymbols = ["GOOGL", "AAPL", "AMZN", "ADBE", "CSCO",
     "DELL", "HPQ", "IBM", "INTL", "INTU", "LYFT", "META", "MSFT",
