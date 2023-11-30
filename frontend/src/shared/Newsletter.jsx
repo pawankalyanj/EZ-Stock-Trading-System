@@ -36,7 +36,7 @@ const handleChange = (e) => {
         navigate('/thank-you');
       }    
       else{
-        navigate('/thank-you');
+        navigate('/failure');
       }
         
   }

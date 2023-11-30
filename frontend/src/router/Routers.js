@@ -8,6 +8,7 @@ import ThankYou from "../Pages/ThankYou";
 import StockVoting from "../Pages/StockVoting";
 import StockPrediction from "../Pages/StockPrediction"
 import About from "../Pages/About";
+import Failure from "../Pages/Failure";
 const Routers =()=>{
     return (
         <Routes>
@@ -18,6 +19,7 @@ const Routers =()=>{
             <Route path='/stocks' element={<StockVoting/>} />
             <Route path='/predict' element={<StockPrediction/>} />
             <Route path='/thank-you' element={<ThankYou/>} />
+            <Route path='/failure' element={<Failure/>} />
             <Route path='/about' element={<About/>} />
             </Routes>
 
