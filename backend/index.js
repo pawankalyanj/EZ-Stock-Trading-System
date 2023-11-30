@@ -11,12 +11,34 @@ import { WebSocketServer } from "ws";
 import request from 'request'
 import axios from 'axios'
 import bodyParser from 'body-parser'
+import path from 'path'
 
 dotenv.config()
 const app = express()
 
 app.use(cors())
 app.use(express.json())
+
+
+
+const _dirname = path.dirname("")
+const buildPath = path.join(_dirname  , "../frontend/build");
+
+app.use(express.static(buildPath))
+
+app.get("/*", function(req, res){
+
+    res.sendFile(
+        path.join(__dirname, "../frontend/build/index.html"),
+        function (err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        }
+      );
+
+})
+
 
 const port = process.env.PORT || 4000
 const MONGO_URI = process.env.REACT_APP_MONGO_URI;
