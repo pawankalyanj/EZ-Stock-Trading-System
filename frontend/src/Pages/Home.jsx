@@ -42,8 +42,8 @@ const Home = () => {
       {/* Testimonial Section */}
       <Container>
         <Row>
-          <Col lg="12" className="text-left ">
-            <h2 className="testimonial__title">User Testimonials</h2>
+          <Col lg="12" className="text-center ">
+            <h2 className="testimonial__title "> Testimonials</h2>
           </Col>
           <Col lg="12">
             <Testimonials />

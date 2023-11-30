@@ -20,11 +20,11 @@ const nav__links = [
 const quick__links = [
 
     {
-        path:'/login',
+        path:'/signin',
         display:'Login'
     },
     {
-        path: '/register',
+        path: '/signup',
         display: 'Register'
     }
 ];

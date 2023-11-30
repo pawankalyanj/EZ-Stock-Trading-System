@@ -1,0 +1,19 @@
+.custom-p {
+    width: 75%;
+    height:5%;
+    text-align: center;
+    padding-left: 15%;
+  }
+  
+  .custom-img {
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* to make it a circle */
+  }
+
+
+
+  .testimonial-item {
+    padding-left: 40%;
+  }

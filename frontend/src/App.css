@@ -66,15 +66,17 @@ ul {
   color: #0b2727 !important;
   border: none !important;
   font-weight: 500 !important;
+  text-decoration: none !important;
 }
 
 .secondary__btn a {
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 1.1rem;
   color: var(--heading-color);
 }
 
 .secondary__btn a:hover {
+  text-decoration: none !important;
   color: inherit;
 }
 

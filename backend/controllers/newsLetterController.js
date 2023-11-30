@@ -1,18 +1,17 @@
-export const newsletterController = async(req,res)=>{
+export const subscribe = async(req,res)=>{
 
       
-        var email = req.body.emailId; 
+        var email = req.body.email.email; 
     
         var data  = {
             members: [{
             email_address : email,
             status       :  'unsubscribed'
-
             }
             ]
         }
     
-       var jsonData= JSON.stringify(data);
+    var jsonData= JSON.stringify(data);
     
     const url =  "https://us8.api.mailchimp.com/3.0/lists/a9e03272f8";
     

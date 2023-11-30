@@ -187,3 +187,8 @@
    color: white;
    text-decoration: none;
  }
+
+ .testimonial__title{
+   margin-top: 5%;
+   font-family: 'Open Sans, sans-serif'
+ }

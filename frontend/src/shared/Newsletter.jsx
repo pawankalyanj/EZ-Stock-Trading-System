@@ -8,7 +8,7 @@ import "./news-letter.css";
 const Newsletter = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState({
-    email: " ",
+    email: "",
 });
   const handleChange = (e) =>{
     setEmail((prevEmail) => ({ ...prevEmail, email: e.target.value }));
@@ -16,14 +16,13 @@ const Newsletter = () => {
   const handleSubmit = async (e) => {
   
     e.preventDefault();
+    console.log("email",email);
+    console.log("json email",JSON.stringify(email));
     try{
-      const res = await fetch(`${BASE_URL}/subscribe`,
+      const res = await fetch(`${BASE_URL}/newsletter/subscribe`,
       {
           method: 'post',
-          headers: {
-              'content-type' : 'application/json'
-          },
-          body: JSON.stringify(email)
+          body: email
       });
       
       const result = await res.json();
@@ -48,10 +47,11 @@ const Newsletter = () => {
             </div>
             <div className="newsletter__input">
               <input
+              
                 type="email"
                 value ={email.email}
                 placeholder="Enter your email"
-                className="newsletter__email-input"
+                className="newsletter__email-input form-control mx-auto"
                 onChange={handleChange}
               />
               <button

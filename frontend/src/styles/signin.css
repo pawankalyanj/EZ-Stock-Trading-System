@@ -12,7 +12,7 @@
 
 .login__form{
     padding: 50px;
-    background: linear-gradient(138deg, rgb(32, 201, 255) 36.7%, rgb(0, 8, 187) 84.4%, rgb(255, 255, 255) 119.7%) ;
+    background:  radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%);
     position: relative;
     margin-bottom: 0px !important;
 }

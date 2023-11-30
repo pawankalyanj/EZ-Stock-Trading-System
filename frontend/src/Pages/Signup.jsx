@@ -3,7 +3,7 @@ import {Container,Row,Col,Form,FormGroup,Button} from 'reactstrap';
 import {Link,useNavigate} from 'react-router-dom';
 import '../styles/signin.css'
 
-import registerImg from '../assets/images/register.png';
+import registerImg from '../assets/images/stock.jpeg';
 import userIcon from '../assets/images/user.png';
 import { AuthContext } from "../context/AuthContext";
 import { BASE_URL } from "../utils/config";

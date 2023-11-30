@@ -1,8 +1,10 @@
-// import express from "express";
-// import  newsletterController from "../controllers/newsLetterController.js"
+import express from "express";
+import  {subscribe} from "../controllers/newsLetterController.js"
+import { verifyUser} from '../utils/verifytoken.js';
 
-//  const router = express.Router();
+const router = express.Router();
+console.log("inside router");
 
-//  router.post('/subscribe',newsletterController);
+router.post('/subscribe',verifyUser,subscribe);
 
-//  export default router;
+export default router;
