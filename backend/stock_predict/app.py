@@ -124,7 +124,7 @@ def predict(stock_symbol):
 def fetch_stock_data(stock_symbol):
     try:
         end_date = date.today()
-        start_date = (end_date - pd.DateOffset(days=14)).strftime('%Y-%m-%d')
+        start_date = (end_date - pd.DateOffset(days=60)).strftime('%Y-%m-%d')
         end_date = end_date.strftime('%Y-%m-%d')
 
         stock_data = yf.download(stock_symbol, start=start_date, end=end_date)
@@ -144,6 +144,47 @@ def fetch_stock_data(stock_symbol):
 
     except Exception as e:
         return jsonify({'error': str(e)})
+
+
+# # Obtains 14 days of historical stock price data for the input stock symbol.
+# @app.route('/get_stock_data/<stock_symbol>', methods=['GET'])
+# def fetch_stock_data(stock_symbol):
+#     try:
+#         end_date = date.today()
+#         start_date = (end_date - pd.DateOffset(days=14)).strftime('%Y-%m-%d')
+#         end_date = end_date.strftime('%Y-%m-%d')
+
+#         stock_data = yf.download(stock_symbol, start=start_date, end=end_date)
+#         stock_data['Close'] = stock_data['Close'].round(2)
+
+#         new_data = pd.DataFrame({
+#             'date': pd.to_datetime(stock_data.index).strftime('%Y-%m-%d'),
+#             'open': stock_data['Open'].round(2),
+#             'high': stock_data['High'].round(2),
+#             'low': stock_data['Low'].round(2),
+#             'close': stock_data['Close'].round(2),
+#             'volume': stock_data['Volume'].round(2)
+#         })
+
+#         # Convert DataFrame to JSON
+#         new_data_json = new_data.to_json(orient='records', date_format='iso')
+
+#         # Load JSON and convert the date to the desired format
+#         loaded_data = json.loads(new_data_json)
+
+#         # Reorder the keys in each entry
+#         for entry in loaded_data:
+#             entry['date'], entry['open'], entry['high'], entry['low'], entry['close'], entry['volume'] = (
+#                 entry['date'], entry['open'], entry['high'], entry['low'], entry['close'], entry['volume']
+#             )
+
+#         return jsonify(loaded_data)
+
+#     except Exception as e:
+#         return jsonify({'error': str(e)})
+
+
+
 
 
 

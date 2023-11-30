@@ -152,7 +152,7 @@ wss.on('connection', (ws) => {
 
 
 // Get stock data from Flask App
-app.get('/get_stock_data/:stock_symbol', async(req, res) => {
+app.get('/api/v1/get_stock_data/:stock_symbol', async(req, res) => {
 
     try {
         const stock_symbol = req.params.stock_symbol;
