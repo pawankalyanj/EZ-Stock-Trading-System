@@ -7,6 +7,7 @@ import Signup from '../Pages/Signup';
 import ThankYou from "../Pages/ThankYou";
 import StockVoting from "../Pages/StockVoting";
 import StockPrediction from "../Pages/StockPrediction"
+import About from "../Pages/About";
 const Routers =()=>{
     return (
         <Routes>
@@ -17,6 +18,7 @@ const Routers =()=>{
             <Route path='/stocks' element={<StockVoting/>} />
             <Route path='/predict' element={<StockPrediction/>} />
             <Route path='/thank-you' element={<ThankYou/>} />
+            <Route path='/about' element={<About/>} />
             </Routes>
 
     )

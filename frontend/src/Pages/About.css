@@ -1,0 +1,25 @@
+.about-page-container {
+    padding: 25px;
+    margin: 0 auto; /* Center the container horizontally */
+    max-width: 800px; /* Set a maximum width for better readability, adjust as needed */
+    text-align: left; /* Align text to the left within the container */
+    font-size: large;
+  }
+  
+  /* Additional styling for sections and headings if needed */
+  .about-page-container section {
+    margin-bottom: 20px; /* Add spacing between sections */
+  }
+  
+  .about-page-container h2 {
+    text-align: center; /* Center the main heading */
+  }
+  
+  .about-page-container h3 {
+    margin-top: 20px; /* Add spacing above subheadings */
+  }
+  
+  .about-page-container h4 {
+    margin-top: 15px; /* Add spacing above sub-subheadings */
+  }
+  
