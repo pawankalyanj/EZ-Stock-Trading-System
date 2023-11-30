@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../styles/StockPrediction.css";
 import axios from "axios";
 import { BASE_URL } from "../utils/config";
-import ReactApexChart from 'react-apexcharts';
+import ReactApexChart from "react-apexcharts";
 
 function StockPrediction() {
   const [stock_symbol, setStockSymbol] = useState("");
   const [predictedPrice, setPredictedPrice] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
-//   const [stock_symbol, setStockSymbol] = useState('');
+  //   const [stock_symbol, setStockSymbol] = useState('');
   const [stockData, setStockData] = useState([]);
-//   const [errorMessage, setErrorMessage] = useState('');
+  //   const [errorMessage, setErrorMessage] = useState('');
 
   const getStockPrediction = async () => {
     try {
@@ -42,39 +42,36 @@ function StockPrediction() {
     }
   };
 
-  
-//   getStockData = async () => {
-//     try{
-//         const response = await axios.get(`${BASE_URL}/get_stock_data/${stock_symbol}`);
-//         console.log("Response:", response);
+  //   getStockData = async () => {
+  //     try{
+  //         const response = await axios.get(`${BASE_URL}/get_stock_data/${stock_symbol}`);
+  //         console.log("Response:", response);
 
-//         if(response.data && response.data.result !== undefined){
-//             // Extract the numerical value from the string and convert it to a number
-//             const predictedPriceNumber = parseFloat(response.data.result);
+  //         if(response.data && response.data.result !== undefined){
+  //             // Extract the numerical value from the string and convert it to a number
+  //             const predictedPriceNumber = parseFloat(response.data.result);
 
-            
-//         }
-//     }
+  //         }
+  //     }
 
-//     };
-
+  //     };
 
   const getStockData = async () => {
     try {
-
-        const response = await axios.get(`${BASE_URL}/get_stock_data/${stock_symbol}`);
-        console.log('Response:', response.data);
-        setStockData(response.data);
-        setErrorMessage('');
+      const response = await axios.get(
+        `${BASE_URL}/get_stock_data/${stock_symbol}`
+      );
+      console.log("Response:", response.data);
+      setStockData(response.data);
+      setErrorMessage("");
     } catch (error) {
-        console.log('Error fetching stock data:', error);
-        setStockData([]);
-        setErrorMessage('Error fetching stock data')
-    };
+      console.log("Error fetching stock data:", error);
+      setStockData([]);
+      setErrorMessage("Error fetching stock data");
+    }
   };
 
   const chartState = {
-    
     series: [
       {
         data: stockData.map((item) => ({
@@ -99,7 +96,7 @@ function StockPrediction() {
         size: 0,
       },
       title: {
-        text: "Stock Price Movement",
+        text: "Current Stock Trend",
         align: "left",
       },
       fill: {
@@ -164,7 +161,7 @@ function StockPrediction() {
 
   return (
     <div className="App">
-      <h1>Stock Prediction</h1>
+      <h1>Stock Projections</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Stock Symbol:
@@ -179,8 +176,13 @@ function StockPrediction() {
 
       {predictedPrice !== null && (
         <div>
-          <h2>Predicted Stock Price: {predictedPrice}</h2>
+          <section>
+            <h3 style={{ color: predictedPrice >= 0 ? "green" : "red" }}>
+              Predicted Price: {predictedPrice}
+            </h3>
+          </section>
           {/* <p>{predictedPrice}</p> */}
+          {/* <h3>Current Stock Trend:</h3> */}
           <div id="chart">
             <ReactApexChart
               options={chartState.options}
@@ -198,8 +200,6 @@ function StockPrediction() {
 }
 
 export default StockPrediction;
-
-
 
 // import React, { useState, useEffect } from "react";
 // import "../styles/StockPrediction.css";
