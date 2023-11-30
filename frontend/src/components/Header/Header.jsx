@@ -26,7 +26,7 @@ const navLinks = [
   {
     path: "/about",
     display: "About",
-    className: "fancy_Button",
+    className: "secondary__btn",
   }
  
 ];

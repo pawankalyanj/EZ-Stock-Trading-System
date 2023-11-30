@@ -18,19 +18,16 @@ const Home = () => {
         <div className="text-overlay center-button">
           <Container>
             <Row>
-              <Col lg="12" className="text-center">
-                <h1>Unlock Your Investing Potential!</h1>
+              <Col lg="12" className="heading text-center">
+                <h1>Unlock Your Investing Potential!!!</h1>
               </Col>
               <Col lg="12" className="text-center">
-                <ul>
-                  <li>Informed decisions through expert insights.</li>
-                  <li>Stay ahead with real-time market updates.</li>
-                  <li>Tailored resources for all levels of expertise.</li>
-                  <li>Streamlined analysis for confident investing.</li>
-                </ul>
+                  <p className="info"> Informed decisions through expert insights.
+                  Stay ahead with real-time market updates.</p>
+                  <p  className="info">We offer tailored resources for all levels of expertise.Streamlined analysis for confident investing</p>
               </Col>
               <Col lg="12" className="text-center">
-                <Button type="button" className="btn btn-outline-light ">
+                <Button type="button" className="start_link btn btn-outline-light ">
                   <Link to="/signup" className="start_link link-light opacity-100">
                     Get Started
                   </Link>
