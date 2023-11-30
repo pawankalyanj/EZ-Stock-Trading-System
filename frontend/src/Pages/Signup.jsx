@@ -40,9 +40,8 @@ const Signup =()=>{
             });
             
             const result = await res.json();
-                console.log("result",result)
-                console.log("resu",res)
-            if(!res.ok) alert(result.message);
+                
+            if(res.status!=200) alert(result.message);
 
             dispatch({type: 'REGISTER_SUCCESS'});
             navigate('/signin');

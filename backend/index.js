@@ -10,6 +10,7 @@ import Vote from './models/StockVoting.js';
 import { WebSocketServer } from "ws";
 import request from 'request'
 import axios from 'axios'
+import bodyParser from 'body-parser'
 
 dotenv.config()
 const app = express()
@@ -24,11 +25,19 @@ const MONGO_URI = process.env.REACT_APP_MONGO_URI;
      credentials: true
  }
 
+ const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    writeConcern: {
+      w: 'majority'
+    }
+  };
+  
 app.get("/", (req,res)=> {
     res.send("api is running");
 })
 
-mongoose.connect(MONGO_URI).then(r =>
+mongoose.connect(MONGO_URI,options).then(r =>
 console.log("DataBase is Connected"))
 
 //middleware
@@ -37,7 +46,7 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
-app.use('/api/v1/subscribe', subRoute);
+app.use('/api/v1/newsletter', subRoute);
 
 
 const validSymbols = ["GOOGL", "AAPL", "AMZN", "ADBE", "CSCO",
