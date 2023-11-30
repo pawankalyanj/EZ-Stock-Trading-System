@@ -12,6 +12,8 @@ import request from 'request'
 import axios from 'axios'
 import bodyParser from 'body-parser'
 import path from 'path'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 dotenv.config()
 const app = express()
@@ -20,24 +22,35 @@ app.use(cors())
 app.use(express.json())
 
 
+// const _dirname = path.dirname(new URL(import.meta.url).pathname);
 
-const _dirname = path.dirname("")
-const buildPath = path.join(_dirname  , "../frontend/build");
+// app.use(express.static("static"));
 
-app.use(express.static(buildPath))
 
-app.get("/*", function(req, res){
 
-    res.sendFile(
-        path.join(__dirname, "../frontend/build/index.html"),
-        function (err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        }
-      );
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
 
-})
+// console.log(__dirname);
+
+
+// // const __dirname = path.dirname("")
+// const buildPath = path.join(__dirname  , "../frontend/build");
+
+// app.use(express.static(buildPath))
+
+// app.get("/*", function(req, res){
+
+//     res.sendFile(
+//         path.join(__dirname, "../frontend/build/index.html"),
+//         function (err) {
+//           if (err) {
+//             res.status(500).send(err);
+//           }
+//         }
+//       );
+
+// })
 
 
 const port = process.env.PORT || 4000

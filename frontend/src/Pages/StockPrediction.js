@@ -159,6 +159,45 @@ function StockPrediction() {
     await getStockData();
   };
 
+  // return (
+  //   <div className="App">
+  //     <h1>Stock Projections</h1>
+  //     <form onSubmit={handleSubmit}>
+  //       <label className="stock-symbol-header">
+  //         Stock Symbol:
+  //         <input
+  //           type="text"
+  //           value={stock_symbol}
+  //           onChange={handleStockSymbolChange}
+  //         />
+  //       </label>
+  //       <button onClick={handleSubmit}>Get Stock Prediction</button>
+  //     </form>
+
+  //     {predictedPrice !== null && (
+  //       <div>
+  //         <section>
+  //           <h3 className = "predicted-price" style={{ color: predictedPrice >= 0 ? "green" : "red" }}>
+  //             Predicted Price: {predictedPrice}
+  //           </h3>
+  //         </section>
+  //         {/* <p>{predictedPrice}</p> */}
+  //         {/* <h3>Current Stock Trend:</h3> */}
+  //         <div id="chart">
+  //           <ReactApexChart
+  //             options={chartState.options}
+  //             series={chartState.series}
+  //             type="area"
+  //             height={350}
+  //           />
+  //         </div>
+  //       </div>
+  //     )}
+
+  //     {errorMessage && <p className="error">{errorMessage}</p>}
+  //   </div>
+  // );
+
   return (
     <div className="App">
       <h1>Stock Projections</h1>
@@ -171,18 +210,16 @@ function StockPrediction() {
             onChange={handleStockSymbolChange}
           />
         </label>
-        <button onClick={handleSubmit}>Get Stock Prediction</button>
+        <button type="submit">Get Stock Prediction</button>
       </form>
 
       {predictedPrice !== null && (
         <div>
           <section>
-            <h3 style={{ color: predictedPrice >= 0 ? "green" : "red" }}>
-              Predicted Price: {predictedPrice}
+            <h3 className="predicted-price" style={{ color: predictedPrice >= 0 ? "green" : "red" }}>
+              Predicted Price: {predictedPrice >= 0 ? `+${predictedPrice}` : predictedPrice}
             </h3>
           </section>
-          {/* <p>{predictedPrice}</p> */}
-          {/* <h3>Current Stock Trend:</h3> */}
           <div id="chart">
             <ReactApexChart
               options={chartState.options}
