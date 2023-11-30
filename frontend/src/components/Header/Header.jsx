@@ -6,20 +6,6 @@ import "./header.css";
 
 import { AuthContext } from "../../context/AuthContext.js";
 
-// const navLinks = [
-//   {
-//     path: "/stocks",
-//     display: "Market Watch",
-//   },
-//   {
-//     path: "/predict",
-//     display: "Stock Projections",
-//   },
-//   {
-//     path: "/about",
-//     display: "About",
-//   }
-// ];
 
 const navLinks = [
   {
@@ -93,7 +79,7 @@ const Header = () => {
                         className={(navClass) =>
                           `${navClass.isActive ? "active_link" : ""} ${
                             item.className || ""
-                          }`
+                          } fancy_Button`
                         }
                       >
                         {item.display}

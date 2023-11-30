@@ -1,17 +1,13 @@
 export const newsletterController = async(req,res)=>{
 
-        var firstName = req.body.fName;
-        var lastName = req.body.lName;
+      
         var email = req.body.emailId; 
     
         var data  = {
             members: [{
             email_address : email,
-            status       :  'unsubscribed',
-             merge_fields :  {
-                    FNAME : firstName,
-                    LNAME : lastName
-             }
+            status       :  'unsubscribed'
+
             }
             ]
         }
@@ -29,16 +25,17 @@ export const newsletterController = async(req,res)=>{
     
       
      const request = https.request( url, options , function(response){
+        try{
+            response.status(200).json({
+                success: true,
+                message: "Successfully updated",
+                data: updateUser,
     
-        if(response.statusCode==200){
-            res.sendFile(__dirname+"/success.html");
-        }
-        else{
-            res.sendFile(__dirname+"/failure.html");
+            });
+        }catch (err){
+            res.status(500).json({success:false, message:'Failed to Subscribe. Please Try again!!!'})
         }
     
-        console.log(response.statusCode);
-        
         });
     
         request.setHeader("Content-Type","application/json")

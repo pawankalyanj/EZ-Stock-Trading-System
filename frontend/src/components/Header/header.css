@@ -70,3 +70,17 @@ margin-bottom:0px !important;
   .white-link:hover {
     color: white;
   }
+
+  .fancy_Button {
+    background-color: #4caf50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    border: none; /* No border */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s; /* Smooth color transition on hover */
+  }
+
+  .fancy-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }

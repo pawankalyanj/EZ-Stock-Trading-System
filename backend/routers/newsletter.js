@@ -1,9 +1,8 @@
 // import express from "express";
-// import  newsletterController from "../controllers/newsLetterController"
-// import router from "./auth";
+// import  newsletterController from "../controllers/newsLetterController.js"
 
-//  const router1 = express.Router();
+//  const router = express.Router();
 
-//  router1.post('/subscribe',newsletterController);
+//  router.post('/subscribe',newsletterController);
 
-//  export default router1;
+//  export default router;

@@ -7,21 +7,24 @@ import ava03 from "../../assets/images/ava-3.jpg";
 const testimonials = [
   {
     content:
-      "EZ Stock Trader has transformed my approach to investing. The insights provided are invaluable, and I've seen significant growth in my portfolio.",
-    name: "Vennela",
+      "EZ Stock Trader has transformed my approach to investing. The insights provided are invaluable, and I've seen significant growth in my portfolio." ,
+    name:"Ganesh",
     role: "Customer",
+    img:ava01
   },
   {
     content:
       "Adopting EZ Stock Trader was a game-changer for me. The real-time updates and tailored resources have made my investment decisions more informed and confident.",
-    name: "Aditya",
+    name:"Vennela",
     role: "Customer",
+    img:ava02
   },
   {
     content:
-      "Srinu's experience with EZ Stock Trader has been fantastic. The streamlined analysis tools and educational materials have enhanced my financial knowledge and performance.",
-    name: "Srinu",
+      "My experience with EZ Stock Trader has been fantastic. The streamlined analysis tools and educational materials have enhanced my financial knowledge and performance.",
+    name: "Pawan",
     role: "Customer",
+    img:ava03
   },
 ];
 
@@ -33,13 +36,13 @@ const Testimonials = () => {
     speed: 1000,
     swipeToSlide: true,
     autoplaySpeed: 2000,
-    slidesToShow: 3,
+    slidesToShow: 1,
 
     responsive: [
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
@@ -59,36 +62,18 @@ const Testimonials = () => {
   return (
     
     <Slider {...settings}>
-      <div className="testimonial" py-4 px-3>
-        <p>ABCD</p>
-      </div>
-      <div className="d-flex align-items-center gap-4 mt-3">
-        <img src={ava01} className="w-25 h-25 rounded-2" alt="" />
-        <div>
-          <h6 className="mb-0 mt-3"> Vennela </h6>
-          <p> Customer</p>
+     { testimonials.map((testimonial, index) => (
+        <div key={index} className="testimonial py-4 px-3">
+          <p>{testimonial.content}</p>
+          <div className="d-flex align-items-center gap-4 mt-3">
+            <img src={testimonial.img} className="w-25 h-20 rounded-circle" alt="" />
+            <div>
+              <h6 className="mb-0 mt-3">{testimonial.name}</h6>
+              <p>{testimonial.role}</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="testimonial" py-4 px-3>
-        <p>ABCD</p>
-      </div>
-      <div className="d-flex align-items-center gap-4 mt-3">
-        <img src={ava02} className="w-25 h-25 rounded-2" alt="" />
-        <div>
-          <h6 className="mb-0 mt-3"> Aditya </h6>
-          <p> Customer</p>
-        </div>
-      </div>
-      <div className="testimonial" py-4 px-3>
-        <p>ABCD</p>
-      </div>
-      <div className="d-flex align-items-center gap-4 mt-3">
-        <img src={ava03} className="w-25 h-25 rounded-2" alt="" />
-        <div>
-          <h6 className="mb-0 mt-3"> Srinu </h6>
-          <p> Customer</p>
-        </div>
-      </div>
+      ))}
     </Slider>
   );
 };
