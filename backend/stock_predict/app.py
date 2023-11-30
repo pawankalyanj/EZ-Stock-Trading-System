@@ -110,8 +110,8 @@ def predict(stock_symbol):
                 sign = "-"
 
             return jsonify({'result': f"{sign}{predicted_price:.2f}"})
-            return jsonify({'result': f"Tomorrow's predicted stock price: {sign}{predicted_price:.2f}",
-                            'model_path': model_path})
+            # return jsonify({'result': f"Tomorrow's predicted stock price: {sign}{predicted_price:.2f}",
+            #                 'model_path': model_path})
         except Exception as e:
             return jsonify({'error': f"Data preparation error: {str(e)}"})
 
