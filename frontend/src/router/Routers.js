@@ -9,6 +9,7 @@ import StockVoting from "../Pages/StockVoting";
 import StockPrediction from "../Pages/StockPrediction"
 import About from "../Pages/About";
 import Failure from "../Pages/Failure";
+import TradingViewWidget from "../Pages/TradingViewWidget";
 const Routers =()=>{
     return (
         <Routes>
@@ -21,6 +22,7 @@ const Routers =()=>{
             <Route path='/thank-you' element={<ThankYou/>} />
             <Route path='/failure' element={<Failure/>} />
             <Route path='/about' element={<About/>} />
+            <Route path='/view' element={<TradingViewWidget/>} />
             </Routes>
 
     )

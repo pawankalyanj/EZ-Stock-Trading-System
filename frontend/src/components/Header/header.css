@@ -71,9 +71,14 @@ margin-bottom:0px !important;
     color: white;
   }
 
+  .active_link{
+    color: blue !important;
+  }
+
   .fancy_Button {
+    text-decoration: none;
     background-color: #4caf50; /* Green background color */
-    color: white; /* White text color */
+    color: black; /* White text color */
     padding: 10px 20px; /* Padding */
     border-radius: 5px; /* Rounded corners */
     border: none; /* No border */

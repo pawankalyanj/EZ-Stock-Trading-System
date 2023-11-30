@@ -6,6 +6,7 @@ import Testimonials from "../components/Testimonial/Testimonial";
 import Newsletter from "../shared/Newsletter";
 
 import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <div>
@@ -30,7 +31,7 @@ const Home = () => {
               </Col>
               <Col lg="12" className="text-center">
                 <Button type="button" className="btn btn-outline-light ">
-                  <Link to="/signup" className="link-light opacity-100">
+                  <Link to="/signup" className="start_link link-light opacity-100">
                     Get Started
                   </Link>
                 </Button>

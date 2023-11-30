@@ -9,9 +9,9 @@ import { AuthContext } from "../../context/AuthContext.js";
 
 const navLinks = [
   {
-    path: "/stocks",
+    path: "/view",
     display: "Market Watch",
-    className: "secondary__btn",
+    className: "secondary__btn ",
   },
   {
     path: "/predict",
@@ -19,10 +19,16 @@ const navLinks = [
     className: "secondary__btn",
   },
   {
-    path: "/about",
-    display: "About",
+    path: "/stocks",
+    display: "Stock Poll",
     className: "secondary__btn",
   },
+  {
+    path: "/about",
+    display: "About",
+    className: "fancy_Button",
+  }
+ 
 ];
 
 const Header = () => {
@@ -46,7 +52,7 @@ const Header = () => {
   }, []);
 
   const checkLogin = (item) => {
-    if (item.path === "/stocks" || item.path === "/predict") {
+    if (item.path === "/stocks" || item.path === "/predict" || item.path== "/view") {
       if (!user) {
         navigate("/signin");
       }
@@ -79,7 +85,7 @@ const Header = () => {
                         className={(navClass) =>
                           `${navClass.isActive ? "active_link" : ""} ${
                             item.className || ""
-                          } fancy_Button`
+                          } `
                         }
                       >
                         {item.display}
