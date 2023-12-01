@@ -127,8 +127,9 @@
  /* Style for the video element */
  .video {
    width: 100%;
-   height: auto;
-   object-fit: cover;
+   height: 30%;
+
+   object-fit:cover;
    filter: blur(100); /* Initial blur value is 0 */
    transition: filter 1s ease-in-out; /* Transition effect for the blur property */
  }
@@ -137,7 +138,7 @@
  .text-overlay {
    position: absolute;
    top: 50%;
-   left: 80%;
+   left: 75%;
    transform: translate(-50%, -50%);
    color: white;
    text-align:inherit;
@@ -176,35 +177,35 @@
    background-color: rgba(52, 152, 219, 0.8); /* Adjust the hover state transparency */
  }
  
-/* Style for the button */
-.btn.btn-outline-light:hover {
-   background-color: black;
-   color: white;
- }
- 
- /* Style for the link inside the button */
- .btn.btn-outline-light:hover a {
-   color: white;
-   text-decoration: none;
- }
-
  .testimonial__title{
    margin-top: 5%;
    font-family: 'Open Sans, sans-serif'
  }
- .start_link{
-   text-decoration: none;
+ .button_link{
+   text-decoration: none !important;
    background: radial-gradient(circle at 10% 20%, rgb(0, 107, 141) 0%, rgb(0, 69, 91) 90%);
-
+   padding-left: 2%;
  }
- .start_link:hover {
-   background-color: black;
+ .button_link:hover{
+   background: black!important;
  }
- 
- .start_link:hover a {
+ .button_link:hover a{
    color: white;
  }
+.start_link{
+text-decoration: none !important;
+color: white;
+}
+
+ 
+ 
  .heading, .info{
    font-family: 'Open Sans, sans-serif';
    
  }
+ .info{
+   padding-left: 2%;
+ }
+ .button_pad{
+   padding-left:3.5% !important;
+  }
