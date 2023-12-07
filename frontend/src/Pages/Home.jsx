@@ -22,9 +22,10 @@ const Home = () => {
                 <h1>Unlock Your Investing Potential!</h1>
               </Col>
               <Col lg="12" className="text-left">
+              <p className="info">Stay ahead with real-time market updates.</p>  
               <p  className="info">Streamlined analysis for confident investing.</p>
                   <p className="info"> Make Informed decisions through expert insights.</p>
-                  <p className="info">Stay ahead with real-time market updates.</p>
+                
                   
                   
               </Col>
