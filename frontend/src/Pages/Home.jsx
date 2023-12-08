@@ -1,13 +1,27 @@
-import React from "react";
+import React,{useContext} from "react";
 import "../styles/home.css";
 import { Container, Row, Col, Button } from "reactstrap";
+import { AuthContext } from "../context/AuthContext.js"
 import heroVideo from "../assets/videos/landing_vid.mp4";
 import Testimonials from "../components/Testimonial/Testimonial";
 import Newsletter from "../shared/Newsletter";
 
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const checkLogin = () => {
+    
+      if (!user) {
+        navigate("/signin");
+      }
+      else{
+        navigate("/view");
+      }
+    
+  };
+
   return (
     <div>
       <div id="video-container">
@@ -31,7 +45,7 @@ const Home = () => {
               </Col>
               <Col lg="12" className="button_pad text-left">
                 <Button type="button" className="button_link btn ">
-                  <Link to="/signup" className="start_link  opacity-100">
+                  <Link  to= {checkLogin()} className="start_link  opacity-100">
                     Get Started
                   </Link>
                 </Button>
